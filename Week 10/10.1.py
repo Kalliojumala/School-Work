@@ -16,6 +16,9 @@ def user_input():
     answers = []
     while len(answers) < 5:
         user_input = input(f"Syötä aine {len(answers)+1}: ")
+        if len(user_input) < 1:
+            print("Syötit tyhjän rivin!")
+            continue
         #check for duplicates, if input already in list ask again without adding the dup 
         if user_input.lower() in answers:
             print(f"{user_input.lower()} on jo syötetty. Duplikaatit eivät ole sallittuja!")
@@ -31,16 +34,22 @@ def check_answers(user_answers: list, correct_answers: list):
             correct_dict['Oikein'].append(f"{item[0].upper()}{item[1:]}")
         else:
             correct_dict['Väärin'].append(f"{item[0].upper()}{item[1:]}")
-
+    
     return correct_dict
 
 def format_output(user_score: dict):
     #calculate percentage of correct answers
     correct_percentage = len(user_score['Oikein']) / (len(user_score['Oikein'])+len(user_score['Väärin'])) * 100
 
-    #format correct and incorrect answers to string 
-    correct_string = ", ".join(user_score['Oikein'])
-    incorrect_string = ", ".join(user_score['Väärin'])
+    #format correct and incorrect answers to string
+    if len(user_score['Oikein']) > 0:
+        correct_string = ", ".join(user_score['Oikein'])
+    else:
+        correct_string = 'Ei oikeita vastauksia'
+    if len(user_score['Väärin']) > 0:
+        incorrect_string = ", ".join(user_score['Väärin'])
+    else:
+        incorrect_string = "Ei vääriä vastauksia"
 
     #assign rank based on correct answers
     if correct_percentage < 41:

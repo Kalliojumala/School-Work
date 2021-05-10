@@ -1,0 +1,31 @@
+Testaus suunnitelma 10.1.py "Alkuaine koe" ohjelmalle.
+
+Testi 1, kaikki oikeita vastauksia:
+    Input: Syötetään viisi oikeaa vastausta pienillä kirjaimilla.
+    Odotettu tulos: Ohjelma tulostaa "100.0% Oikein. Oikein: {vastaukset pilkulla erotettuna päättyen pisteeseen} Väärin: Ei vääriä vastauksia, uusirivi "Taitotaso: Good"
+    Testin tulos: Odotettu tulos, testi läpäisty.
+
+Testi 2, kaikki vääriä vastauksia:
+    Input: Viisi väärää vastausta pienillä kirjaimilla.
+    Odotettu tulos: Ohjelma tulostaa "0.0% Oikein. Oikein: Ei oikeita vastauksia Väärin: {vastaukset}, uusirivi "Taitotaso: Noob"
+    Testin tulos: Odotettu tulos, testi läpäisty.
+
+Testi 3, duplikaatit:
+    Input: Toistetaan samaa syötettä joka on oikea vastaus 3 kertaa, jonka jälkeen ajetaan ohjelma loppuun.
+    Odotettu tulos: Ohjelman pitäisi ilmoittaa duplikaatista ja jättää se huomioimatta käyttäjän vastauksissa. Duplikaatin siis ei pitäisi vaikuttaa ohjelman toimintaan.
+    Testin tulos: Läpäisty, ohjelma tulosti "{vastaus} jo syötetty. Duplikaatit eivät ole sallittuja!" Ohjelma jätti loppu tulosteessa duplikaatit huomioimatta.
+
+Testi 4, monta duplikaattia:
+    Input: Annetaan montaa eri syötettä monta kertaa satunnaisessa järjestyksessä. 
+    Odotettu tulos: Duplikaattien määrällä tai annetulla sanalla ei pitäis olla merkitystä ohjelman toimintaan.
+    Testin tulos: Läpäisty, eri duplikaatti syötteet eivät vaikuttaneet ohjelman tulokseen tai toimintaan.
+
+Testi 5, tyhjä syöte:
+    Input: Satunnaisesti syötteen sekaan tyhjiä rivejä (Enter ilman merkkejä)
+    Odotettu tulos: Tyhjää syötettä ei pitäisi laskea vastauksiin, tyhjällä syötteellä ohjelman tulisi tulostaa viesti "Syötit tyhjän syötteen"
+    Testin tulos: Testi läpäisty, tyhjä syöte ei vaikuttanut ohjelman toimintaa ja tyhjästä syötteestä huomautettiin oletetusti.
+
+Testi 6, kaikki testit plus isoja ja pieniä kirjaimia 
+    Input: Kaikkia yllämainittuja (duplikaatit, tyhjäsyöte ja oikeita/vääriä vastauksia) sekoittaen isoja ja pieniä kirjaimia.
+    Odotettu tulos: Ohjelman tulisi jättää kirjainkoko huomiotta, hyväksyen oikeat vastaukset vaikka "HeLiUm" tällä tavoin kirjoitettuna.
+    Testin tulos: Testi läpäisty, ohjelma jätti kirjainkoon huomiotta, ilmoitti duplikaateista ja tyhjistä riveistä. Lopputulostus oli odotettu.
