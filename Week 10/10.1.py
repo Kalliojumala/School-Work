@@ -17,9 +17,9 @@ def user_input():
     while len(answers) < 5:
         user_input = input(f"Syötä aine {len(answers)+1}: ")
         #check for duplicates, if input already in list ask again without adding the dup 
-        if user_input in answers:
-            print(f"{user_input} on jo syötetty. Duplikaatit eivät ole sallittuja!")
-        if user_input not in answers: 
+        if user_input.lower() in answers:
+            print(f"{user_input.lower()} on jo syötetty. Duplikaatit eivät ole sallittuja!")
+        if user_input.lower() not in answers: 
             answers.append(user_input.lower())
 
     return answers
