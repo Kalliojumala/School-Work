@@ -28,9 +28,9 @@ def check_answers(user_answers: list, correct_answers: list):
     correct_dict = {'Oikein': [], 'Väärin': []}
     for item in user_answers:
         if item in correct_answers:
-            correct_dict['Oikein'].append(item)
+            correct_dict['Oikein'].append(f"{item[0].upper()}{item[1:]}")
         else:
-            correct_dict['Väärin'].append(item)
+            correct_dict['Väärin'].append(f"{item[0].upper()}{item[1:]}")
 
     return correct_dict
 
