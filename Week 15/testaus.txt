@@ -1,0 +1,54 @@
+Tämän dokumentin tarkoituksena on määritellä testitapaukset viikko 15 projektitehtävän hyväksyntä
+testaukseen.
+
+
+Testitapaus 1:
+Tausta oletukset: Verkkoyhteys toimii, ohjelman suoritushakemistossa on tilaa ja käyttöoikeudet ovat
+kunnossa.
+Aloita ohjelma ja valitse 1. Tarkista tallensiko ohjelma kuvan ohjeen mukaiseen hakemistorakenteeseen.
+
+Tulos: Testi läpäisty, kuva tallennettu ja ohjelma tulosti kuvan polun.
+
+
+Testitapaus 2.
+Tausta oletukset: Verkkoyhteys toimii, ohjelman suoritushakemistossa on tilaa ja käyttöoikeudet ovat
+kunnossa.
+Aloita ohjelma ja valitse 2. Tarkista tallensiko ohjelma kuvan ohjeen mukaiseen hakemistorakenteeseen.
+
+Tulos: Testi läpäisty, kuva tallennettu ja ohjelma tulostaa kuvan polun.
+
+
+Testitapaus 3.
+Tausta oletukset: Verkkoyhteys toimii, ohjelman suoritushakemistossa on tilaa ja käyttöoikeudet ovat
+kunnossa.
+Aloita ohjelma ja valitse 3. Tarkista tallensiko ohjelma kuvan ohjeen mukaiseen hakemistorakenteeseen.
+
+Tulos: Testi läpäisty, kuva tallennettu ja ohjelma tulostaa kuvan polun.
+
+
+Testitapaus 4.
+Tausta oletukset: Verkkoyhteys toimii, ohjelman suoritushakemistossa on tilaa ja käyttöoikeudet ovat
+kunnossa.
+Aloita ohjelma ja valitse 0. Varmista, että ohjelma loppuu
+
+Tulos: Testi läpäisty, ohjelman suoritus päättyy käyttäjän syöttäessä nollan.
+
+
+Testitapaus 5.
+Tausta oletukset: Verkkoyhteys toimii, ohjelman suoritushakemistossa on tilaa ja käyttöoikeudet ovat
+kunnossa.
+Aloita ohjelma ja kirjoita kissa. Tarkista antaako ohjelma järkevän virheilmoituksen.
+Ei vaadita, mutta testaa ja kerro tulokset
+
+Tulos: Ohjelma ilmoittaa virheellisestä syötteestä ja tulostaa 'helptext' functiolla komennot käyttäjälle. Loopin suoritus ei pysähdy eikä virhettä tule.
+
+
+Testitapaus 6.
+Tausta oletukset: Verkkoyhteys ei toimi, ohjelman suoritushakemistossa on tilaa ja käyttöoikeudet ovat
+kunnossa.
+Aloita ohjelma ja valitse 1. Antaako ohjelma järkevän virheilmoituksen
+
+
+Testitapaus 7.
+Tausta oletukset: Verkkoyhteys toimii, ohjelman suoritushakemistossa ei ole tilaa kuvalle tai se on read only
+Aloita ohjelma ja valitse 1. Antaako ohjelma järkevän virheilmoituksen
