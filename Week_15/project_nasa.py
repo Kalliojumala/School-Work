@@ -15,10 +15,15 @@ def get_url(date: datetime = datetime.now()):
     Returns:
       tuple: url of image, given date 
     """
-    search_url = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=' + str(date.strftime('%Y-%m-%d'))
-    data = requests.get(search_url).json()
-    
-    return data['url'], date
+    try:
+        search_url = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=' + str(date.strftime('%Y-%m-%d'))
+        data = requests.get(search_url).json()
+        
+        return data['url'], date
+
+    except ConnectionError:
+        print('Connection error, please check your internet connection!')
+        return None
 
 def save_image(url, date):
     """
@@ -31,11 +36,7 @@ def save_image(url, date):
     Returns:
       str: Folder(s)/Filename
     """  
-    try:
-        os.chdir('Nasa_pictures\\')
-    except FileNotFoundError:
-        os.mkdir('Nasa_pictures')
-        os.chdir('Nasa_pictures\\')
+    
     try:
         os.chdir(str(date.strftime('%Y')))
     except FileNotFoundError:
@@ -91,29 +92,33 @@ def main():
             break
 
         if user_input == '1':
-            try:
-                url_date = get_url(datetime.now())
-                file_loc = save_image(url_date[0], url_date[1])
-                print(f"Todays picture saved in: Nasa_pictures\\{file_loc}")
-            except ConnectionError:
-                print("No internet connection!")
+            
+            url_date = get_url(datetime.now())
+            if url_date == type(None):
+                continue
+            file_loc = save_image(url_date[0], url_date[1])
+            print(f"Todays picture saved in: {file_loc}")
+            
 
         if user_input == '2':
-            try:
-                url_date = get_url(datetime.now() - timedelta(days=1))
-                file_loc = save_image(url_date[0], url_date[1])
-                print(f"Yesterdays picture saved in:  Nasa_pictures\\{file_loc}")
-            except ConnectionError:
-                print("No internet connection!")
+           
+            url_date = get_url(datetime.now() - timedelta(days=1))
+
+            if url_date == type(None):
+                continue
+
+            file_loc = save_image(url_date[0], url_date[1])
+            print(f"Yesterdays picture saved in:  {file_loc}")
+            
 
         if user_input == '3':
-            try:
                 date = get_random_date()
                 url_date = get_url(date)
+                if url_date == type(None):
+                    continue
                 file_loc = save_image(url_date[0], url_date[1])
-                print(f"Random picture saved in: Nasa_pictures\\{file_loc}")
-            except ConnectionError:
-                print("No internet connection!")
+                print(f"Random picture saved in: {file_loc}")
+            
             
         elif user_input not in '0123':
             print("Invalid input!")
