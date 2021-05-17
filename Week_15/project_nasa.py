@@ -4,7 +4,7 @@ import urllib.request
 from datetime import datetime, timedelta
 from random import randint
 
-###TODO FIX ConnectionError stuff and Dirfull stuff!
+###TODO FIX ConnectionError stuff and Dirfull stuff!!!!!
 
 def get_url(date: datetime = datetime.now()):
     """Retrieves data on NASA pic by given date. 
@@ -15,6 +15,7 @@ def get_url(date: datetime = datetime.now()):
     Returns:
       tuple: url of image, given date 
     """
+    # request information from nasa, error msg if no internet connection
     try:
         search_url = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=' + str(date.strftime('%Y-%m-%d'))
         data = requests.get(search_url).json()
@@ -36,7 +37,10 @@ def save_image(url, date):
     Returns:
       str: Folder(s)/Filename
     """  
-    
+    # save original location to easily switch back to
+    original_dir = os.getcwd()
+
+    #check/make directories
     try:
         os.chdir(str(date.strftime('%Y')))
     except FileNotFoundError:
@@ -48,8 +52,15 @@ def save_image(url, date):
         os.mkdir(str(date.strftime('%m')))
         os.chdir(str(date.strftime('%m')))
 
-    urllib.request.urlretrieve(url, (str(date.strftime('%Y-%m-%d')) + '.jpg'))
+    #retrieves and saves the image to current dir
+    try:
+        urllib.request.urlretrieve(url, (str(date.strftime('%Y-%m-%d')) + '.jpg'))
+    except PermissionError:
+        print("Folder is full or read-only!")
+        failed = True
 
+    # change back to OG dir to avoid nested folders if user gives multiple inputs, and then return a file path for main to print out.
+    os.chdir(original_dir)
     return str(date.strftime('%Y')) + '\\' + str(date.strftime('%m')) + '\\' + str(date.strftime('%Y-%m-%d')) + '.jpg'
 
 def get_random_date():
@@ -58,7 +69,16 @@ def get_random_date():
     Returns:
       datetime obj: Random date 
     """
-    return datetime(randint(1995,int(datetime.now().strftime('%Y'))), randint(1,12), randint(1,30))
+    month = randint(1,12)
+
+    if month == 2:
+        day = randint(1,28)
+    elif month in [1,3,5,7,8,10,12]:
+        day = randint(1,31)
+    else:
+        day = randint(1,30)
+
+    return datetime(randint(1995,int(datetime.now().strftime('%Y'))), month, day)
 
 def help_text():
     text = """
@@ -108,7 +128,7 @@ def main():
                 continue
 
             file_loc = save_image(url_date[0], url_date[1])
-            print(f"Yesterdays picture saved in:  {file_loc}")
+            print(f"Yesterdays picture saved in: {file_loc}")
             
 
         if user_input == '3':
@@ -123,5 +143,8 @@ def main():
         elif user_input not in '0123':
             print("Invalid input!")
             print(help_text())
-main()
+
+
+if __name__ == '__main__':
+    main()
 
