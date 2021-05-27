@@ -1,6 +1,6 @@
 import os   
 import requests
-import urllib.request
+from requests import ConnectionError
 from datetime import datetime, timedelta
 from random import randint
 
@@ -23,7 +23,7 @@ def get_url(date: datetime = datetime.now()):
         return data['url'], date
 
     except ConnectionError:
-        print('Connection error, please check your internet connection!')
+        print('Connection error, please check your internet connection and try again!')
         return None
 
 def save_image(url, date):
@@ -46,6 +46,7 @@ def save_image(url, date):
     except FileNotFoundError:
         os.mkdir(str(date.strftime('%Y')))
         os.chdir(str(date.strftime('%Y')))
+        
     try:
         os.chdir(str(date.strftime('%m')))
     except FileNotFoundError:
@@ -53,11 +54,9 @@ def save_image(url, date):
         os.chdir(str(date.strftime('%m')))
 
     #retrieves and saves the image to current dir
-    try:
-        urllib.request.urlretrieve(url, (str(date.strftime('%Y-%m-%d')) + '.jpg'))
-    except PermissionError:
-        print("Folder is full or read-only!")
-        failed = True
+    response = requests.get(url) 
+    with open((str(date.strftime('%Y-%m-%d')) + '.jpg'), 'wb') as file_1:
+        file_1.write(response.content)
 
     # change back to OG dir to avoid nested folders if user gives multiple inputs, and then return a file path for main to print out.
     os.chdir(original_dir)
@@ -114,7 +113,7 @@ def main():
         if user_input == '1':
             
             url_date = get_url(datetime.now())
-            if url_date == type(None):
+            if url_date == None:
                 continue
             file_loc = save_image(url_date[0], url_date[1])
             print(f"Todays picture saved in: {file_loc}")
@@ -124,7 +123,7 @@ def main():
            
             url_date = get_url(datetime.now() - timedelta(days=1))
 
-            if url_date == type(None):
+            if url_date == None:
                 continue
 
             file_loc = save_image(url_date[0], url_date[1])
@@ -134,7 +133,7 @@ def main():
         if user_input == '3':
                 date = get_random_date()
                 url_date = get_url(date)
-                if url_date == type(None):
+                if url_date == None:
                     continue
                 file_loc = save_image(url_date[0], url_date[1])
                 print(f"Random picture saved in: {file_loc}")

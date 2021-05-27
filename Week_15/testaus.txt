@@ -38,7 +38,6 @@ Testitapaus 5.
 Tausta oletukset: Verkkoyhteys toimii, ohjelman suoritushakemistossa on tilaa ja käyttöoikeudet ovat
 kunnossa.
 Aloita ohjelma ja kirjoita kissa. Tarkista antaako ohjelma järkevän virheilmoituksen.
-Ei vaadita, mutta testaa ja kerro tulokset
 
 Tulos: Ohjelma ilmoittaa virheellisestä syötteestä ja tulostaa 'helptext' functiolla komennot käyttäjälle. Loopin suoritus ei pysähdy eikä virhettä tule.
 
@@ -48,7 +47,10 @@ Tausta oletukset: Verkkoyhteys ei toimi, ohjelman suoritushakemistossa on tilaa 
 kunnossa.
 Aloita ohjelma ja valitse 1. Antaako ohjelma järkevän virheilmoituksen
 
+Tulos: Ohjelma tulostaa käyttäjälle viestin verkkovirheestä, looppi ei katkea. Ohjelmaa ei tarvitse käynnistää uudelleen toimiakseen kun verkkoyhteys palautetaan.
 
 Testitapaus 7.
 Tausta oletukset: Verkkoyhteys toimii, ohjelman suoritushakemistossa ei ole tilaa kuvalle tai se on read only
 Aloita ohjelma ja valitse 1. Antaako ohjelma järkevän virheilmoituksen
+
+Tulos: Ei testattu.
