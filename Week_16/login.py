@@ -1,5 +1,3 @@
-
-
 #Tkinter commands/Notes
 
 #Parts of GUI are activated by using 'pack()- method'
@@ -60,7 +58,7 @@ input_username = StringVar()
 v_user_name = Entry(textvariable=input_username)
 
 input_password = StringVar()
-v_user_password = Entry(textvariable=input_password)
+v_user_password = Entry(textvariable=input_password, show='*')
 
 v_user_name.place(x= 5, y=30)
 v_user_password.place(x=5, y=70)
